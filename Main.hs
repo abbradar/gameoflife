@@ -96,7 +96,7 @@ events _ (EventKey (SpecialKey k) Down _ _) (Game o@(Vector2 x y) s w)
   | k == KeyUp = Game (Vector2 x (y - 1)) s w
   | k == KeySpace = Game o (not s) w
 events p (EventKey (MouseButton LeftButton) Down _ (fromT -> c)) (Game o s w) = Game o s $ Map.alter switch k w
-  where k = liftA round $ (o + c / p)
+  where k = liftA round $ (c / p - o)
         switch = maybe (Just defaultCell) (const Nothing)
 events _ _ w = w
 
@@ -108,5 +108,5 @@ main = play (InWindow "Game of Life" size (0, 0)) bcolor fps (Game (Vector2 0 0)
   where size = (640, 480)
         csize = Vector2 8 8
         bcolor = black
-        fps = 4
+        fps = 30
         game = Map.empty :: World Conway's

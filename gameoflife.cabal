@@ -21,10 +21,12 @@ executable gameoflife
   default-extensions:  ScopedTypeVariables
                      , TupleSections
                      , ViewPatterns
+                     , TypeSynonymInstances
+                     , FlexibleInstances
   ghc-prof-options:    -fprof-auto
-  ghc-options:         -Wall -fllvm -O3
-  build-depends:       base >=4.7 && <4.8
-                     , OpenGL
+  ghc-options:         -Wall -O3
+  build-depends:       base >=4.7 && <4.9
+                     , linear
                      , containers
                      , gloss
   -- hs-source-dirs:      
